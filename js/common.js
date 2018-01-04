@@ -1,10 +1,11 @@
+
 $(document).ready(function(){
 
     var myDefMenu = new DefMenu({
-        menu : ".mydefmenu",
-        build : true,
+        //menu : ".defmenu",
+        //build : true,
         btn : ".defmenu-btn",
-        links: "auto"
+        //links: "auto"
     });
 
     function animatedAnchorScroll(self, btnOn) {
