@@ -2,7 +2,7 @@
 
 	   var myDefMenu = new DefMenu({
 		menu : ".mydefmenu", // class\id menu
-		build : true, // build menu, links must be "auto"
+		build : true, // build menu
 		btn : ".defmenu-btn", // class\id menu button
 		links: "auto" // blocks with attribute "data-defanchor='LINK TEXT'"
 	    });
@@ -24,3 +24,7 @@
 	  <span class=""></span>
 	</div>
 
+### container for all content
+	<div id="defmenu-container">
+	
+	</div>
