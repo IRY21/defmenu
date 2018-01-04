@@ -5,7 +5,7 @@
         this._state = 0;
         var self = this;
 
-        this._menuClass = options.menu || ".defmenu";
+        this._menuClass = options.menu || false;
         this._btnName = options.btn || false;
 
         this._links = options.links || false;
@@ -14,7 +14,7 @@
         this._btn = document.querySelector(this._btnName);
         this._menuContainer = document.querySelector(this.MENUCONTAINERNAME);
 
-        if(this._build) this._createNav(this._menuClass);
+        if(this._build || !this._menuClass) this._createNav(this._menuClass);
         if(this._links) this._createLinks(this._links);
 
         $(this._btn).click(function () {
@@ -60,6 +60,8 @@
         div.appendChild(ul);
 
         menu.appendChild(div);
+
+        if (!this._links) this._createLinks("auto");
     };
     DefMenu.prototype._createLinks =  function (createState) {
         var parent = document.querySelector(".defmenu-nav");
