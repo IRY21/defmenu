@@ -1,22 +1,31 @@
 body{
     overflow-x: hidden;
 }
+#defmenu-wrapper{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
 #defmenu-container{
-    transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);}
+    position: relative;
+    left: 0;
+    transition: all 0.25s ease-in-out;
+    /*transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);*/}
 .defmenu {
     width: 250px;
     height: 100%;
     background: #191918;
     position: fixed;
     top: 0;
-    left: 0;
+    left: -250px;
     z-index: 9999;
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
-    -webkit-transform: translate3d(-250px, 0, 0);
+    transition: all 0.25s ease-in-out;
+    /*-webkit-transform: translate3d(-250px, 0, 0);
     -ms-transform: translate3d(-250px, 0, 0);
     transform: translate3d(-250px, 0, 0);
-    transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99); }
+    transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);*/ }
 .defmenu:after {
     content: '';
     position: absolute;
@@ -28,13 +37,15 @@ body{
     width: .1rem; }
 
 .defmenu-open .defmenu {
-    -webkit-transform: translate3d(0, 0, 0);
+    left: 0;
+    /*-webkit-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);}
+    transform: translate3d(0, 0, 0);*/}
 .defmenu-open #defmenu-container{
-    -webkit-transform: translate3d(250px, 0, 0);
+    left: 250px;
+    /*-webkit-transform: translate3d(250px, 0, 0);
     -ms-transform: translate3d(250px, 0, 0);
-    transform: translate3d(250px, 0, 0);}
+    transform: translate3d(250px, 0, 0);*/}
 .defmenu-overlay{
     display: none;
 }
