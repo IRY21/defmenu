@@ -2,13 +2,13 @@
 $(document).ready(function(){
 
     var myDefMenu = new DefMenu({
+        btn : ".defmenu-btn",
         //menu : ".defmenu",
         //build : true,
-        btn : ".defmenu-btn",
         //links: "auto"
     });
 
-    function animatedAnchorScroll(self, btnOn) {
+    function animatedAnchorScroll(self) {
         var target = $(self).attr('href');
         $('html, body').animate({scrollTop: $(target).offset().top - 50}, 1000);
     }
