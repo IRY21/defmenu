@@ -1,0 +1,140 @@
+@import "../../../sass/vars"
+
+body
+  overflow-x: hidden
+
+#defmenu-wrapper
+  width: 100%
+  position: relative
+  overflow: hidden
+
+#defmenu-container
+  position: relative
+  left: 0
+  transition: all 0.25s ease-in-out
+
+.defmenu
+  width: 250px
+  height: 100%
+  background: #191918
+  position: fixed
+  top: 0
+  left: -250px
+  z-index: 9999
+  overflow: hidden
+  transition: all 0.25s ease-in-out
+  &:after
+    content: ''
+    position: absolute
+    -webkit-box-shadow: 0 0 10px #000
+    box-shadow: 0 0 10px #000
+    top: 0
+    bottom: 0
+    right: -.1rem
+    width: .1rem
+
+.defmenu-open
+  .defmenu
+    left: 0
+  #defmenu-container
+    left: 250px
+
+.defmenu-overlay
+  display: none
+
+.defmenu-open .defmenu-overlay
+  display: block
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  z-index: 9998
+  background-color: rgba(0, 0, 0, 0.5)
+  -webkit-animation: fade 500ms
+  animation: fade 500ms
+
+.defmenu-content
+  height: 100%
+  background: #333232
+  position: relative
+  overflow-y: auto
+  overflow-x: hidden
+  &::-webkit-scrollbar
+    width: 5px
+  &::-webkit-scrollbar-thumb
+    background-color: #656565
+    border-radius: 0
+    &:hover
+      background-color: rgb(196, 196, 196)
+  &::-webkit-scrollbar-track
+    background-color: rgb(237, 237, 237)
+
+.defmenu-nav
+  width: 100%
+  padding: 0px
+  list-style: none
+  background: #ffffff
+
+.defmenu-nav__link
+  padding: 22px 18px 23px 23px
+  font-size: 12px
+  font-weight: 600
+  color: #494747
+  border-top: 1px solid #e9eaec
+  position: relative
+  display: block
+  text-decoration: none
+  &:after
+    content: url("../img/defmenu-nav__link-arrow.png")
+    position: absolute
+    top: 50%
+    margin-top: -6px
+    right: 19px
+
+.defmenu-btn
+  width: 45px
+  height: 39px
+  background: $main-color
+  border: 0
+  position: relative
+  -webkit-border-radius: 5px
+  border-radius: 5px
+  cursor: pointer
+  z-index: 9999
+  span
+    width: 27px
+    height: 4px
+    background: #fff
+    -webkit-border-radius: 5px
+    border-radius: 5px
+    position: absolute
+    left: -webkit-calc(50% - 14px)
+    left: calc(50% - 14px)
+    -webkit-transition: all 0.25s ease-in-out
+    transition: all 0.25s ease-in-out
+    display: block
+    &:nth-child(1)
+      top: -webkit-calc(50% - 10px)
+      top: calc(50% - 10px)
+    &:nth-child(2)
+      top: -webkit-calc(50% - 2px)
+      top: calc(50% - 2px)
+    &:nth-child(3)
+      top: -webkit-calc(50% + 6px)
+      top: calc(50% + 6px)
+
+.defmenu-btn-open span
+  &:nth-child(1)
+    top: 18px !important
+    -webkit-transform: rotate(45deg)
+    -ms-transform: rotate(45deg)
+    transform: rotate(45deg)
+  &:nth-child(2)
+    opacity: 0
+    display: none
+  &:nth-child(3)
+    top: 18px !important
+    -webkit-transform: rotate(-45deg)
+    -ms-transform: rotate(-45deg)
+    transform: rotate(-45deg)
