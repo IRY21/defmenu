@@ -2,8 +2,8 @@
 $(document).ready(function(){
 
     var myDefMenu = new DefMenu({
-        btn : ".defmenu-btn",
-        //menu : ".defmenu",
+        btn : ".DefmenuBtn"
+        //menu : ".mydefmenu",
         //build : true,
         //links: "auto"
     });
