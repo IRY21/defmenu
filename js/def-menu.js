@@ -17,11 +17,11 @@ function DefMenu(options) {
     if(this._build || !this._menuClass) this._createNav(this._menuClass);
     if(this._links) this._createLinks(this._links);
 
-    $(this._btn).click(function () {
+    this._btn.addEventListener('click', function () {
         self.run();
     });
 
-    $(document).on('click touchstart', function (evt) {
+    document.addEventListener('click', function (evt) {
         var target = evt.target;
 
         while(target != this){
@@ -35,10 +35,25 @@ function DefMenu(options) {
             target = target.parentNode;
         }
     });
+    document.addEventListener('touchstart', function (evt) {
+        var target = evt.target;
+
+        while(target != this){
+            if (target == self._menuContainer){
+                self.close();
+                return;
+            }
+            if (target == self._btn){
+                return;
+            }
+            target = target.parentNode;
+        }
+    });
+
 }
 
-DefMenu.prototype.MENUCONTAINERNAME = "#defmenu-container";
-DefMenu.prototype.MENUWRAPPERNAME = "#defmenu-wrapper";
+DefMenu.prototype.MENUCONTAINERNAME = ".DefmenuContainer";
+DefMenu.prototype.MENUWRAPPERNAME = ".DefmenuWrapper";
 
 DefMenu.prototype._createNav = function (menuName) {
     var menu, div, ul;
@@ -47,18 +62,18 @@ DefMenu.prototype._createNav = function (menuName) {
 
     if (!menu) {
         menu = document.createElement("div");
-        menu.className = "defmenu";
+        menu.className = "Defmenu";
         var navParent = document.querySelector(this.MENUWRAPPERNAME) || document.body;
         navParent.appendChild(menu);
     }
 
-    menu.classList.add("defmenu");
+    menu.classList.add("Defmenu");
 
     div = document.createElement("div");
-    div.className = "defmenu-content";
+    div.className = "DefmenuContent";
 
     ul = document.createElement("ul");
-    ul.className = "defmenu-nav";
+    ul.className = "DefmenuNav";
 
     div.appendChild(ul);
 
@@ -67,7 +82,7 @@ DefMenu.prototype._createNav = function (menuName) {
     if (!this._links) this._createLinks("auto");
 };
 DefMenu.prototype._createLinks =  function (createState) {
-    var parent = document.querySelector(".defmenu-nav");
+    var parent = document.querySelector(".DefmenuNav");
     var anchorBlocks = document.querySelectorAll("*[data-defanchor]");
 
     switch (createState){
@@ -78,7 +93,7 @@ DefMenu.prototype._createLinks =  function (createState) {
                 text = anchorBlocks[i].getAttribute("data-defanchor");
                 li = document.createElement("li");
                 a = document.createElement("a");
-                a.className = "defmenu-nav__link";
+                a.className = "DefmenuNav-Link";
                 a.href = "#" + anchor;
                 a.innerHTML = text;
                 li.appendChild(a);
@@ -88,17 +103,17 @@ DefMenu.prototype._createLinks =  function (createState) {
     }
 };
 DefMenu.prototype.open = function () {
-    $(this._btnName).removeClass("defmenu-btn-closed");
-    $(this._btnName).addClass("defmenu-btn-open");
-    $("body").addClass("defmenu-open");
+    this._btn.classList.remove("DefmenuBtn_closed");
+    this._btn.classList.add("DefmenuBtn_open");
+    document.body.classList.add("Defmenu_open");
     this._state = 1;
 };
 DefMenu.prototype.close =  function () {
-    $(this._btnName).removeClass("defmenu-btn-open");
-    $(this._btnName).addClass("defmenu-btn-closed");
-    $("body").removeClass("defmenu-open");
+    this._btn.classList.remove("DefmenuBtn_open");
+    this._btn.classList.add("DefmenuBtn_closed");
+    document.body.classList.remove("Defmenu_open");
     this._state = 0;
-};
+}
 DefMenu.prototype.run =  function () {
     if(this._state == 0){
         this.open();
